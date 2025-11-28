@@ -10,8 +10,53 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+      const ProductDetails = ({
+        productName,
+        productPrice,
+        discountPrice,
+        imageSrc,
+      }) => {
+        return (
+          <div>
+            <img src={imageSrc} width="50" height="50" />
+
+            <p>{productName}</p>
+            {discountPrice ? (
+              <>
+                <del>
+                  <p>Price: ${productPrice}</p>
+                </del>
+                <p>Discount price: ${discountPrice}</p>
+              </>
+            ) : (
+              <p>Price: ${productPrice}</p>
+            )}
+            <button>Add to Cart</button>
+          </div>
+        );
+      };
       const App = () => {
-        return <h1>React Lesson 2 Challenge</h1>;
+        return (
+          <>
+            <ProductDetails
+              productName="Cotton Socks"
+              productPrice="10.90"
+              discountPrice="5.45"
+              imageSrc="cotton-socks.png"
+            />
+            <ProductDetails
+              productName="Tennis Ball"
+              productPrice="6.00"
+              imageSrc="tennis-balls.png"
+            />
+            <ProductDetails
+              productName="Plain T-shirt"
+              productPrice="7.99"
+              discountPrice="4.55"
+              imageSrc="plain-t-shirt.png"
+            />
+          </>
+        );
       };
       const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(<App />);
